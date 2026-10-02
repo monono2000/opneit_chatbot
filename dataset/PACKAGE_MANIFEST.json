@@ -1,0 +1,104 @@
+{
+  "package": "labeled_questionnaire_100_handoff",
+  "description": "100 synthetic labeled target turns with SQL and definition-only SQLite reference database",
+  "validation": {
+    "jsonl_rows_each": 100,
+    "database_integrity": "ok",
+    "foreign_key_errors": 0,
+    "sql_dump_restore": "passed",
+    "sql_structure_create": "passed",
+    "documented_sql_statements_executed": 8,
+    "markdown_local_links": "passed",
+    "reference_database_counts": {
+      "question_items": 31,
+      "question_fields": 52,
+      "field_options": 23,
+      "questionnaire_rules": 70,
+      "subjects": 0,
+      "sessions": 0,
+      "answers": 0
+    }
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4619,
+      "sha256": "864061208278cb3ba7df354531d57f0fcb39762d6cab359aea9440539a2e9e15"
+    },
+    {
+      "path": "data/extraction.jsonl",
+      "bytes": 3072390,
+      "sha256": "01a2e3003501fae829fb3c17282645e502bbae9b06ecd3ce3ffa0b860f134993"
+    },
+    {
+      "path": "data/manifest.json",
+      "bytes": 2978,
+      "sha256": "07d536705f7a3ce37f4211f5f55be37e99e8994c88a28c82a99ef5c7d2cb88be"
+    },
+    {
+      "path": "data/master.jsonl",
+      "bytes": 2491995,
+      "sha256": "a5901b6a308027b3898567014281be68b3fa2eeea42d60bfa3467e5598744b38"
+    },
+    {
+      "path": "data/response.jsonl",
+      "bytes": 3078371,
+      "sha256": "dfc53212d74f2ab87d8fe2f6eaa25a3ebba5f252aa9292d76cebf92de056f0e3"
+    },
+    {
+      "path": "data/review.csv",
+      "bytes": 83882,
+      "sha256": "4edf85116dfd6c58fafa895a333a1bbb873e20f48449abb53e5086d33be880e5"
+    },
+    {
+      "path": "data/review.html",
+      "bytes": 895774,
+      "sha256": "4c4cd43aa7668e37e71317532b71abc94acd7f8f48581b82ea034a884a0641fc"
+    },
+    {
+      "path": "data/review_queue.jsonl",
+      "bytes": 96607,
+      "sha256": "7b8d1c3ddf887a7d76cbbbbc59fe1db63826feb68980f8f8234efa026893257e"
+    },
+    {
+      "path": "db/initialized_database.sql",
+      "bytes": 51896,
+      "sha256": "7b6da9e8205b6ffec66d20bc19f192b0f9219aa341db1c3b5aa126f0b7d3eb0f"
+    },
+    {
+      "path": "db/questionnaire_reference.sqlite3",
+      "bytes": 229376,
+      "sha256": "da7fe6011c336fc6a42115beefee271e9e88b213d0a7f42f1f522940bd0c756e"
+    },
+    {
+      "path": "db/schema.sql",
+      "bytes": 11202,
+      "sha256": "9360d5d691f004d0d6f9ccbda0b5601e6f2a1883aa2c9254b73137f8469c50f9"
+    },
+    {
+      "path": "db/service_schema.sql",
+      "bytes": 400,
+      "sha256": "667be08d669fcd57c18b0e45210302e5f36793e1043081263bf95ddb8939a72e"
+    },
+    {
+      "path": "docs/DATASET_GUIDE.md",
+      "bytes": 6064,
+      "sha256": "5e8cd50727ea91f0243988e8dcd769494d9502379c5d3acea4ccdb3a4fa02a5d"
+    },
+    {
+      "path": "docs/DATA_DICTIONARY.md",
+      "bytes": 11031,
+      "sha256": "874b4343b4650edbc17e2db08f8f2a1784fa9f4db0411841506489a6f6381e05"
+    },
+    {
+      "path": "docs/DB_SQL_GUIDE.md",
+      "bytes": 11559,
+      "sha256": "e4c0d137927ef7648d2d5fb859d4b117306447cfa81fcf1d8e4a9abe7561e214"
+    },
+    {
+      "path": "schema/questionnaire_schema.json",
+      "bytes": 9571,
+      "sha256": "7d05479ca610cdf056fe7c466714950ce2a28c2bf7e9c9c89665b230f45ba40c"
+    }
+  ]
+}

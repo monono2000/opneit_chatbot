@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0.0-draft",
+  "language": "ko",
+  "review_status": "source_verified_draft",
+  "source": {
+    "title": "건강검진 실시기준 [별지 제1호 서식] 건강검진 문진표",
+    "effective_date": "2026-01-01",
+    "file": "raw/official/health_questionnaire_2026.pdf",
+    "sha256": "244f3c84567cacb60796da2aee3745076ae950573dd7c832548cca52c1799441",
+    "pages": 2
+  },
+  "normalization_policy": {
+    "do_not_guess": true,
+    "ranges_are_not_exact_values": true,
+    "preserve_reference_period": true,
+    "preserve_unit": true,
+    "require_confirmation_for_unresolved_contradiction": true
+  },
+  "sections": [
+    {
+      "id": "medical_history",
+      "name": "질환력(과거력, 가족력)",
+      "items": [
+        {
+          "id": "Q1",
+          "question": "다음과 같은 질병으로 진단을 받았거나, 현재 약물 치료 중이십니까?",
+          "response_type": "disease_matrix",
+          "diseases": ["뇌졸중(중풍)", "심근경색/협심증", "고혈압", "당뇨병", "이상지질혈증", "폐결핵", "우울증", "조기정신증", "C형간염", "만성폐쇄성폐질환", "기타(암포함)"],
+          "fields": [
+            {"name": "diagnosed", "type": "boolean", "labels": {"true": "예", "false": "아니요"}},
+            {"name": "on_medication", "type": "boolean", "labels": {"true": "예", "false": "아니요"}}
+          ],
+          "required": true
+        },
+        {
+          "id": "Q2",
+          "question": "부모, 형제, 자매 중에 다음 질환을 앓았거나 해당 질환으로 사망한 경우가 있으십니까?",
+          "response_type": "disease_boolean_matrix",
+          "diseases": ["뇌졸중(중풍)", "심근경색/협심증", "고혈압", "당뇨병", "기타(암포함)"],
+          "allowed_values": [true, false],
+          "labels": {"true": "예", "false": "아니요"},
+          "required": true
+        },
+        {
+          "id": "Q3",
+          "question": "B형간염 바이러스 보유자입니까?",
+          "response_type": "categorical",
+          "allowed_values": ["yes", "no", "unknown"],
+          "labels": {"yes": "예", "no": "아니요", "unknown": "모름"},
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "tobacco",
+      "name": "흡연 및 전자담배",
+      "items": [
+        {
+          "id": "Q4",
+          "question": "지금까지 평생 총 5갑(100개비) 이상의 일반담배(궐련)를 피운 적이 있습니까?",
+          "response_type": "boolean",
+          "allowed_values": [false, true],
+          "labels": {"false": "아니요", "true": "예"},
+          "branches": [{"when": false, "next": "Q5"}, {"when": true, "next": "Q4_1"}],
+          "required": true
+        },
+        {
+          "id": "Q4_1",
+          "question": "현재 일반담배(궐련)를 피우십니까?",
+          "response_type": "tobacco_status",
+          "allowed_values": ["current", "former"],
+          "labels": {"current": "현재 피움", "former": "과거에는 피웠으나 현재 피우지 않음"},
+          "fields": [
+            {"name": "total_years", "type": "integer", "unit": "년", "minimum": 0},
+            {"name": "daily_count", "type": "number", "unit": "개비", "minimum": 0},
+            {"name": "years_since_quit", "type": "number", "unit": "년", "minimum": 0, "applies_when": "former"}
+          ],
+          "required_when": {"item": "Q4", "equals": true}
+        },
+        {
+          "id": "Q5",
+          "question": "지금까지 궐련형 전자담배(가열담배, 예: 아이코스, 글로, 릴 등)를 사용한 적 있습니까?",
+          "response_type": "boolean",
+          "allowed_values": [false, true],
+          "labels": {"false": "아니요", "true": "예"},
+          "branches": [{"when": false, "next": "Q6"}, {"when": true, "next": "Q5_1"}],
+          "required": true
+        },
+        {
+          "id": "Q5_1",
+          "question": "현재 궐련형 전자담배(가열담배)를 사용하십니까?",
+          "response_type": "tobacco_status",
+          "allowed_values": ["current", "former"],
+          "labels": {"current": "현재 피움", "former": "과거에는 피웠으나 현재 피우지 않음"},
+          "fields": [
+            {"name": "total_years", "type": "integer", "unit": "년", "minimum": 0},
+            {"name": "daily_count", "type": "number", "unit": "개비", "minimum": 0},
+            {"name": "years_since_quit", "type": "number", "unit": "년", "minimum": 0, "applies_when": "former"}
+          ],
+          "required_when": {"item": "Q5", "equals": true}
+        },
+        {
+          "id": "Q6",
+          "question": "액상형 전자담배를 사용한 경험이 있습니까?",
+          "response_type": "boolean",
+          "allowed_values": [false, true],
+          "labels": {"false": "아니요", "true": "예"},
+          "branches": [{"when": false, "next": "Q7"}, {"when": true, "next": "Q6_1"}],
+          "required": true
+        },
+        {
+          "id": "Q6_1",
+          "question": "최근 한 달 동안 액상형 전자담배를 사용한 경험이 있습니까?",
+          "reference_period": "최근 한 달",
+          "response_type": "categorical",
+          "allowed_values": ["no", "days_1_2", "days_3_9", "days_10_29", "daily"],
+          "labels": {"no": "아니요", "days_1_2": "월 1-2일", "days_3_9": "월 3-9일", "days_10_29": "월 10-29일", "daily": "매일"},
+          "required_when": {"item": "Q6", "equals": true}
+        }
+      ]
+    },
+    {
+      "id": "alcohol",
+      "name": "음주",
+      "reference_period": "지난 1년간",
+      "items": [
+        {
+          "id": "Q7",
+          "question": "지난 1년간 술을 마시는 횟수는 어느 정도입니까?",
+          "response_type": "frequency_or_none",
+          "fields": [
+            {"name": "frequency", "type": "number", "minimum_exclusive": 0},
+            {"name": "unit", "type": "categorical", "allowed_values": ["week", "month", "year"]},
+            {"name": "does_not_drink", "type": "boolean"}
+          ],
+          "constraints": ["frequency와 does_not_drink=true를 동시에 기록하지 않는다"],
+          "required": true
+        },
+        {
+          "id": "Q7_1",
+          "question": "술을 마시는 날은 보통 어느 정도 마십니까?",
+          "response_type": "beverage_amount_matrix",
+          "beverages": ["소주", "맥주", "양주", "막걸리", "와인"],
+          "units": ["잔", "병", "캔", "cc"],
+          "constraints": ["술 종류별로 잔, 병, 캔, cc 중 한 단위만 작성", "술 종류는 복수응답 가능", "하루에 마신 총 양으로 합산"],
+          "required_when": {"item": "Q7", "field": "does_not_drink", "equals": false}
+        },
+        {
+          "id": "Q7_2",
+          "question": "하루 동안 가장 많이 마셨던 음주량은 어느 정도입니까?",
+          "response_type": "beverage_amount_matrix",
+          "beverages": ["소주", "맥주", "양주", "막걸리", "와인"],
+          "units": ["잔", "병", "캔", "cc"],
+          "constraints": ["술 종류별로 잔, 병, 캔, cc 중 한 단위만 작성", "술 종류는 복수응답 가능", "하루에 마신 총 양으로 합산"],
+          "required_when": {"item": "Q7", "field": "does_not_drink", "equals": false}
+        }
+      ]
+    },
+    {
+      "id": "physical_activity",
+      "name": "신체활동(운동)",
+      "items": [
+        {
+          "id": "Q8_1",
+          "question": "평소 1주일간, 숨이 많이 차게 만드는 고강도 신체활동을 며칠 하십니까?",
+          "reference_period": "평소 1주일간",
+          "response_type": "integer",
+          "unit": "일/주",
+          "minimum": 0,
+          "maximum": 7,
+          "required": true
+        },
+        {
+          "id": "Q8_2",
+          "question": "평소 하루에 숨이 많이 차게 만드는 고강도 신체활동을 몇 시간 하십니까?",
+          "reference_period": "평소 활동일 하루",
+          "response_type": "duration",
+          "fields": [{"name": "hours", "type": "integer", "minimum": 0}, {"name": "minutes", "type": "integer", "minimum": 0, "maximum": 59}],
+          "required": true
+        },
+        {
+          "id": "Q9_1",
+          "question": "평소 1주일간, 숨이 약간 차게 만드는 중강도 신체활동을 며칠 하십니까?",
+          "reference_period": "평소 1주일간",
+          "exclusion": "Q8 응답에 포함한 신체활동은 제외",
+          "response_type": "integer",
+          "unit": "일/주",
+          "minimum": 0,
+          "maximum": 7,
+          "required": true
+        },
+        {
+          "id": "Q9_2",
+          "question": "평소 하루에 숨이 약간 차게 만드는 중강도 신체활동을 몇 시간 하십니까?",
+          "reference_period": "평소 활동일 하루",
+          "response_type": "duration",
+          "fields": [{"name": "hours", "type": "integer", "minimum": 0}, {"name": "minutes", "type": "integer", "minimum": 0, "maximum": 59}],
+          "required": true
+        },
+        {
+          "id": "Q10",
+          "question": "최근 1주일 동안 팔굽혀펴기, 윗몸일으키기, 아령, 역기, 철봉 등 근력 운동을 한 날은 며칠입니까?",
+          "reference_period": "최근 1주일",
+          "response_type": "integer",
+          "unit": "일/주",
+          "minimum": 0,
+          "maximum": 7,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "counts": {
+    "master": 100,
+    "extraction": 100,
+    "response": 100,
+    "review_queue": 100
+  },
+  "categories": {
+    "diagnosis_medication": 22,
+    "family_history": 10,
+    "official_option": 3,
+    "smoking_experience": 3,
+    "strength_days": 8,
+    "activity_days": 6,
+    "usage_boundary": 8,
+    "alcohol_frequency": 6,
+    "activity_duration": 4,
+    "alcohol_amount": 2,
+    "smoking_details": 2,
+    "partial_answer": 6,
+    "missing_unit": 2,
+    "ambiguous_or_uncertain": 6,
+    "intent": 6,
+    "correction": 6
+  },
+  "actions": {
+    "NEXT": 74,
+    "REVIEW_SUMMARY": 10,
+    "CLARIFY": 14,
+    "REVIEW_INCOMPLETE": 2
+  },
+  "item_coverage": [
+    "Q1.D01",
+    "Q1.D02",
+    "Q1.D03",
+    "Q1.D04",
+    "Q1.D05",
+    "Q1.D06",
+    "Q1.D07",
+    "Q1.D08",
+    "Q1.D09",
+    "Q1.D10",
+    "Q1.D11",
+    "Q10",
+    "Q2.D01",
+    "Q2.D02",
+    "Q2.D03",
+    "Q2.D04",
+    "Q2.D05",
+    "Q3",
+    "Q4",
+    "Q4_1",
+    "Q5",
+    "Q5_1",
+    "Q6",
+    "Q6_1",
+    "Q7",
+    "Q7_1",
+    "Q7_2",
+    "Q8_1",
+    "Q8_2",
+    "Q9_1",
+    "Q9_2"
+  ],
+  "human_reviewed": 0,
+  "external_llm_called": false,
+  "donor_used": false,
+  "split": "development",
+  "lineage_group": "shared_authored_pilot_templates",
+  "validation": {
+    "label_and_evidence_rows": 100,
+    "engine_replayed_rows": 100,
+    "correction_setup_replayed": 6,
+    "unlinked_correction_rejected": 6,
+    "input_target_alignment": "passed",
+    "input_duplicates": 0
+  },
+  "limitations": [
+    "Authored synthetic targets using inherited v5 contexts; not independent patient sessions.",
+    "No independent human review, training, tokenizer length audit, or performance evaluation.",
+    "B uses existing authored v6 renderer; response diversity remains limited.",
+    "Keep lineage together; do not randomly divide these turns into train and independent test."
+  ],
+  "source_hashes": {
+    "dataset/processed/questionnaire_schema.json": "7d05479ca610cdf056fe7c466714950ce2a28c2bf7e9c9c89665b230f45ba40c",
+    "dataset/db_grounded_v5/sessions/development.jsonl": "13563704e3344e8cbd71527ddeac3ce9000137360bf0600249859598961464a3",
+    "build_labeled_100.py": "3b52c7890afbd81e745ae19a927ae2179e8335e8ba9528930961352c263dbd80",
+    "continuous_questionnaire.py": "f9436fc711852e560036c48aeff46cfcd797ba7ede988ab262f576ef83c51536",
+    "build_diversity_pilot.py": "68bc1df447168978ca0cc3139605d85179f46b1c58671bfabc4e932fa9f1e6c0"
+  },
+  "files": {
+    "master.jsonl": "a5901b6a308027b3898567014281be68b3fa2eeea42d60bfa3467e5598744b38",
+    "extraction.jsonl": "01a2e3003501fae829fb3c17282645e502bbae9b06ecd3ce3ffa0b860f134993",
+    "response.jsonl": "dfc53212d74f2ab87d8fe2f6eaa25a3ebba5f252aa9292d76cebf92de056f0e3",
+    "review_queue.jsonl": "7b8d1c3ddf887a7d76cbbbbc59fe1db63826feb68980f8f8234efa026893257e",
+    "review.csv": "4edf85116dfd6c58fafa895a333a1bbb873e20f48449abb53e5086d33be880e5",
+    "review.html": "4c4cd43aa7668e37e71317532b71abc94acd7f8f48581b82ea034a884a0641fc"
+  }
+}
